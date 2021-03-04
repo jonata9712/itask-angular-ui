@@ -7,6 +7,9 @@ import { Tarefa } from './domain/tarefa';
   providedIn: 'root'
 })
 export class TarefaService {
+  put(endpoint: string, tarefa: Tarefa) {
+    return this.http.put(environment.apiUrl+endpoint+'/'+tarefa.getId(), tarefa, {responseType: 'blob'});
+  }
   delete(endpoint: string, id: any) {
     return this.http.delete(environment.apiUrl+endpoint+'/'+id, {responseType:'blob'});
   }

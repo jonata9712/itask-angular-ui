@@ -57,10 +57,17 @@ export class FormTarefaComponent implements OnInit {
     this.formTarefa.get('status').value);
     tarefa.setId(this.formTarefa.get('id').value);
 
-    this.service.post(this.endpoint, tarefa).subscribe(
-      data => {this.submit.emit();
-      this.formTarefa.reset()}
-    );
+    if(tarefa.getId() != null){
+      this.service.put(this.endpoint, tarefa).subscribe(
+        data => {this.submit.emit();
+        this.formTarefa.reset();}
+      );
+    }else{
+      this.service.post(this.endpoint, tarefa).subscribe(
+        data => {this.submit.emit();
+        this.formTarefa.reset();}
+      );
+    }
   }
 
   formEdit(tarefa){
