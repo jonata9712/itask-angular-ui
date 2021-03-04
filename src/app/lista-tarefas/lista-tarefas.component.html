@@ -1,0 +1,36 @@
+<div class="mt-3 tarefa" *ngFor="let tarefa of tarefas" #cardTarefa>
+    <div class="card text-center">
+        <div class="card-header col-12">
+            <div class="row">
+                <div class="col-10 text-center">
+
+                    <h6 class="d-inline "><b>{{tarefa.titulo}} </b>  </h6>
+                    
+                </div>
+
+                <div class="col-2 text-right">
+
+                    <button class="btn btn-secondary  text-right d-inline" type="button" (click)="edit(tarefa)">
+                        <ion-icon name="create"></ion-icon>
+                    </button>
+                    <button class="btn btn-danger  text-right d-inline " type="button"
+                        (click)="delete(tarefa.id, cardTarefa)">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card-body text-center">
+            <h6 class="d-inline ml-2">Responsável: <b>{{tarefa.responsavel}}</b> </h6>
+                    <h6 class="d-inline ml-2">Data início: <b>{{tarefa.dataInicio | date: 'dd/MM/yyyy'}}</b> </h6>
+                    <h6 class=" ml-2">Status: <b>{{getStatus(tarefa.status)}}</b> </h6>
+
+            {{tarefa.descricao}}
+        </div>
+    </div>
+</div>
+
+<app-editar #editar (atualizado)="ngOnInit()"></app-editar>
